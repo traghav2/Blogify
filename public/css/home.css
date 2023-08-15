@@ -27,7 +27,7 @@ body {
 }
 
 .logo {
-    height: 64px;
+    height: 70px;
     vertical-align: middle;
     display: inline-block;
 }
@@ -137,3 +137,11 @@ background: linear-gradient(to right, #c23bc7, #234dd8); /* W3C, IE 10+/ Edge, F
     background: #1b1b1b;
     color: #fff;
 }
+
+.published {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6)
+  }

@@ -1,0 +1,105 @@
+.blog, .article {
+  height: fit-content;
+  padding-bottom: 0;
+}
+
+.blog {
+  width: 90vw;
+  min-width: 400px;
+  height: 100px;
+  display: block;
+  margin: auto;
+  padding: 50px 0;
+}
+
+.banner {
+  object-fit: cover;
+  width: 90vw;
+  height: 70vh;
+  margin-top: 100px;
+  border-radius: 10px;
+  background: rgba(168, 168, 168, 0.5);
+  background-size: cover;
+  background-position: center;
+}
+
+.article-image{
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 10px;
+  display: block;
+  margin: 20px auto;
+  /* object-fit: contain; */
+}
+
+
+.sub-heading{
+  position: absolute;
+  top: 100%;
+  right: 50%;
+  padding: 10px 5vw;
+  font-size: 17px;
+  font-style: italic;
+  bottom: 0px;
+  right: 0px;
+  color: white;   
+  cursor: pointer;
+}
+
+.sub-heading:hover{
+  color: rgb(181, 181, 181);
+}
+
+.banner-container{
+  display: flex;
+  justify-content: center;
+}
+
+::-webkit-scrollbar {
+  width: 0em; /* Adjust this value to set the width of the hidden scrollbar */
+}
+
+textarea::-webkit-scrollbar {
+  width: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+
+.article, .title {
+  min-height: auto;
+  height: fit-content;
+  border-radius: 10px;
+  background: rgba(168, 168, 168, 0.5);
+  padding-top: 0px;
+  white-space: normal;
+}
+
+.title{
+  padding: 40px;
+  color: white;
+  font-size: 40px;
+}
+
+.article{
+  position: relative;
+  padding: 40px;
+  line-height: 30px;
+  color: white;
+}
+
+.published {
+  margin: 20px 0 30px;
+  padding: 0 10px;
+  text-transform: capitalize;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6)
+}
+
+.published span {
+  font-weight: 700;
+  font-style: normal;
+}

@@ -1,6 +1,6 @@
 .banner {
-    width: 80vw;
-    height: 400px;
+    width: 90vw;
+    height: 90vh;
     margin-top: 100px;
     border-radius: 10px;
     position: relative;
@@ -33,7 +33,8 @@
   }
   
   .blog {
-    width: 80vw;
+    display: flex;
+    width: 90vw;
     min-width: 400px;
     height: 100px;
     display: block;
@@ -77,6 +78,7 @@
 
   
   .article {
+    padding-left: 30px;
     height: 500px;
     font-size: 20px;
     margin-top: 20px;
@@ -85,6 +87,12 @@
     padding-bottom: 100px;
     white-space: pre-wrap;
     margin-bottom: 60px;
+    padding-top: 30px;
+  }
+
+  .title{
+    padding-top: 60px;
+    padding-left: 30px;
   }
 
   
@@ -136,6 +144,7 @@
   
     .title {
       font-size: 30px;
+      padding: 30px;
     }
   
     .article {
