@@ -35,6 +35,7 @@ const showBlog = (data) => {
     banner.style.backgroundImage = `url(${data.bannerImage})`
     titleTag.innerHTML += blogTitle.innerHTML = data.title;
     publish.innerHTML += data.publishedAt;
+    publish.innerHTML += ` by - ${data.author}`;
 
     const article = document.querySelector('.article');
     addArticle(article, data.article);

@@ -8,10 +8,6 @@ body {
     background: #325ade;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #b65bb9, #325ade);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #c23bc7, #234dd8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-
-
-
     width: 100%;
     position: relative;
     font-family: 'poppins', sans-serif;
@@ -27,7 +23,7 @@ body {
 }
 
 .logo {
-    height: 70px;
+    height: 60px;
     vertical-align: middle;
     display: inline-block;
 }
@@ -56,12 +52,44 @@ background: linear-gradient(to right, #c23bc7, #234dd8); /* W3C, IE 10+/ Edge, F
     list-style: none;
 }
 
+.links-container .link-item{
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
 .link {
     padding: 10px;
     margin-left: 10px;
     text-decoration: none;
     text-transform: capitalize;
     color: white;
+    transition: 0.2s ease;
+}
+
+#login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    z-index: 99;
+}
+
+#login button{
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffffd2;
+    transition: 0.2s ease;
+}
+
+#login button:hover{
+    background-color: #ffffffa0;
+}
+
+.link:hover{
+    color: #51c19c;
 }
 
 .header {

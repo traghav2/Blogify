@@ -1,0 +1,48 @@
+body{
+    background: #325ade;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #b65bb9, #325ade);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #c23bc7, #234dd8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    position: relative;
+    font-family: 'poppins', sans-serif;
+}
+
+.heading{
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    position: relative;
+}
+
+#signed-in{
+    height: 100vh;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-danger{
+    background-color: red;
+}
+
+#login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    z-index: 99;
+}
+
+#login button{
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #ffffffd2;
+    transition: 0.2s ease;
+}
+
+#login button:hover{
+    background-color: #ffffffa0;
+}

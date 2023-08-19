@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="x-frame-options" content="allow-popups" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
 
-    <div class="login">
-        <div id="loginUI"></div> 
+    <nav class="navbar">
+      <a href="/home"><img src="./img/logo.png" class="logo" alt="" /></a>
+      <ul class="links-container">
+        <li class="link-item"><a href="/about" class="link">About Us</a></li>
+        <li class="link-item" id="dashboard-link-editor"><a href="/editor" class="link">Editor</a></li>
+        <li class="link-item" id="dashboard-link">
+          <a href="" class="link">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="login">
+      <button id="login-btn">Login With Google</button>
     </div>
 
+    <div id="signed-in">
+      <h1 class="heading">Your Blogs</h1>
 
+      <section class="blogs-section"></section>
+    </div>
+
+    <script type="module" src="js/nav.js"></script>
     <script type="module" src="js/dashboard.js"></script>
-</body>
+  </body>
 </html>
