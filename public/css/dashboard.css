@@ -22,7 +22,23 @@ body{
 }
 
 .btn-danger{
-    background-color: red;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255, 37, 37, 0.82);
+    color: #000;
+    text-decoration: none;
+    text-transform: capitalize;
+    
+}
+
+.btn-black{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.82);
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin: 0 5px;
 }
 
 #login{

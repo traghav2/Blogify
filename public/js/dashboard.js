@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc, getDocs, collection, query, where } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { getFirestore, doc, deleteDoc, setDoc, getDoc, getDocs, collection, query, where } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
 // import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 // import { FirebaseUIAuth } from "https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js";
@@ -21,13 +21,19 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-let linkContainer = document.querySelector('.links-container');
 const signInButton = document.getElementById('login-btn');
 const loginContainer = document.getElementById('login');
 const dashboardContent = document.getElementById('signed-in');
 const dashboardLink = document.getElementById('dashboard-link');
 const dashboardLinkEditor = document.getElementById('dashboard-link-editor');
 const blogSection = document.querySelector('.blogs-section');
+
+async function deleteBlog(id) {
+  await deleteDoc(doc(db, "blogs", String(id))).then(() => {
+    alert("Blog deleted!");
+    location.reload();
+  })
+}
 
 const userSignIn = async () => {
   signInWithPopup(auth, provider)
@@ -51,7 +57,6 @@ function userLogOut() {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log(auth);
     loginContainer.remove();
     body.appendChild(dashboardContent);
     getUserBlogs(auth);
@@ -72,19 +77,68 @@ const getUserBlogs = async (auth) => {
     blogCard(blog);
   })
 }
+
 async function blogCard(blog) {
   let data = await blog.data();
-  const blogSectionContent = `<div class="blog-card">
-<img src="${data?.bannerImage}" alt="" class="blog-image">
-<h1 class="blog-title">${data?.title.substring(0, 100) + '...'}</h1>
-<p class="blog-overview">${data?.article.substring(0, 200) + '...'}</p>
-<p class="published">${data?.publishedAt}</p>
-<a href="/${blog.id}" class="btn">Read</a>
-<a href="/${blog.id}/editor" class="btn-grey>edit</a>
-<a href=""  onclick = "deleteBlog('${blog.id}')" class="btn-danger>Delete</a>
-</div>`
-  blogSection.innerHTML += blogSectionContent;
-}
+
+  // Create the blog card div element
+  const blogCard = document.createElement("div");
+  blogCard.classList.add("blog-card");
+
+  // Create the image element
+  const img = document.createElement("img");
+  img.src = data?.bannerImage;
+  img.alt = "";
+  img.classList.add("blog-image");
+
+  // Create the title element
+  const h1 = document.createElement("h1");
+  h1.classList.add("blog-title");
+  h1.textContent = data?.title.substring(0, 100) + "...";
+
+  // Create the overview element
+  const p1 = document.createElement("p");
+  p1.classList.add("blog-overview");
+  p1.textContent = data?.article.substring(0, 200) + "...";
+
+  // Create the published element
+  const p2 = document.createElement("p");
+  p2.classList.add("published");
+  p2.textContent = data?.publishedAt;
+
+  // Create the read button element
+  const a1 = document.createElement("a");
+  a1.href = `/${blog.id}`;
+  a1.classList.add("btn");
+  a1.textContent = "Read";
+
+  // Create the edit button element
+  const a2 = document.createElement("a");
+  a2.href = `/${blog.id}/editor`;
+  a2.classList.add("btn-black");
+  a2.textContent = "Edit";
+
+  const deleteBtn = document.createElement("a");
+  deleteBtn.setAttribute("href", "#");
+  deleteBtn.setAttribute("class", "btn-danger");
+  deleteBtn.textContent = "Delete";
+
+  // Append the elements to the blogCard element
+  blogCard.appendChild(img);
+  blogCard.appendChild(h1);
+  blogCard.appendChild(p1);
+  blogCard.appendChild(p2);
+  blogCard.appendChild(a1);
+  blogCard.appendChild(a2);
+  blogCard.appendChild(deleteBtn);
+
+  // Append the blogCard element to the blogSectionContent element
+  blogSection.appendChild(blogCard);
+
+  deleteBtn.addEventListener('click', async () => {
+    await deleteBlog(blog.id);
+  });}
+
 
 signInButton.addEventListener('click', userSignIn);
 dashboardLink.addEventListener('click', userLogOut);

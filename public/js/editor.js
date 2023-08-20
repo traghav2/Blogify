@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -89,15 +89,21 @@ let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 
 publishBtn.addEventListener("click", () => {
   if (article.value.length && blogTitleField.value.length) {
-    let letters = "abcdefghijklmnopqrstuvwxyz";
-    const blogTitle = blogTitleField.value.split(" ").join("-");
-    let id = '';
 
-    for (let i = 0; i < 4; i++) {
-      id += letters[Math.floor(Math.random() * letters.length)];
+    let docName;
+    if (blogId[1] == 'editor') {
+      let letters = "abcdefghijklmnopqrstuvwxyz";
+      const blogTitle = blogTitleField.value.split(" ").join("-");
+      let id = '';
+
+      for (let i = 0; i < 4; i++) {
+        id += letters[Math.floor(Math.random() * letters.length)];
+      }
+      let docName = `${blogTitle}-${id}`;
+    } else{
+      docName = decodeURI(blogId[1]);
     }
 
-    let docName = `${blogTitle}-${id}`;
     let date = new Date();
     const docRef = doc(db, "blogs", docName);
 
@@ -154,5 +160,21 @@ onAuthStateChanged(auth, (user) => {
   }
 })
 
+let blogId = location.pathname.split('/');
+if (blogId[1] != "editor") {
+  let docRef = doc(db, "blogs", decodeURI(blogId[1]));
+
+  getDoc(docRef).then((doc) => {
+    if (doc.exists()) {
+      let data = doc.data();
+      bannerPath = data.bannerImage;
+      banner.style.backgroundImage = `url(${bannerPath})`;
+      blogTitleField.value = data.title;
+      article.value = data.article;
+    } else {
+      location.replace('/');
+    }
+  })
+}
+
 signInButton.addEventListener('click', userSignIn);
-dashboardLink.addEventListener('click', userLogOut);
